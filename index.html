@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" class="app-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>House Reconstruction Study</title>
+    <link rel="stylesheet" href="./styles.css?v=sha256-e4e873c143a227e5" />
+  </head>
+  <body>
+    <div class="app-loader" id="app-loader" aria-label="Loading interactive house model">
+      <div class="app-loader-meter" id="app-loader-meter" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="app-loader-fill" id="app-loader-fill"></span>
+      </div>
+      <output class="app-loader-percent" id="app-loader-percent" for="app-loader-meter">0%</output>
+      <p class="app-loader-message" id="app-loader-message" aria-live="polite" hidden></p>
+    </div>
+
+    <main class="app-shell" inert aria-busy="true">
+      <section class="viewer" aria-label="Interactive 3D house reconstruction">
+        <div id="scene" class="scene" aria-label="Drag to rotate the 3D model"></div>
+
+        <aside class="view-panel is-layer-compact" aria-label="Model controls">
+          <div class="control-group" role="group" aria-labelledby="view-controls-label">
+            <span class="sr-only" id="view-controls-label">View</span>
+            <button class="icon-control view-mode-toggle" type="button" id="view-mode-toggle" data-current-view="axon" aria-label="3D | Plan" data-tooltip="3D | Plan">
+              <svg class="axon-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" />
+                <path d="M4.5 7.8L12 12l7.5-4.2M12 12v9" />
+              </svg>
+              <svg class="plan-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4zM10 4v7h10M4 15h6v5M14 11v9" />
+              </svg>
+            </button>
+            <button class="icon-control" type="button" id="rotate-view" aria-label="Rotate 90°" data-tooltip="Rotate 90°">
+              <svg class="rotate-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M6 16c-2.5-.9-4-2.7-4-5 0-3.6 4.5-6.5 10-6.5s10 2.9 10 6.5-4.5 6.5-10 6.5h-2" />
+                <path d="M13.5 14L10 17.5l3.5 3.5" />
+              </svg>
+            </button>
+            <button class="icon-control day-night-toggle" type="button" id="day-night-toggle" data-lighting-mode="day" aria-label="Switch to night view" aria-pressed="false" data-tooltip="Night view">
+              <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2z" />
+              </svg>
+              <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3.5" />
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" />
+              </svg>
+            </button>
+            <div class="arrange-control" id="arrange-control">
+              <section class="arrange-cell" aria-label="Rearrange model items">
+                <button class="icon-control arrange-toggle" id="arrange-toggle" type="button" aria-label="Enter Rearrange mode" aria-pressed="false" aria-expanded="false" aria-controls="arrange-actions" data-tooltip="Rearrange">
+                  <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
+                    <path d="M12 3v18M3 12h18M12 3l-2.5 2.5M12 3l2.5 2.5M12 21l-2.5-2.5M12 21l2.5-2.5M3 12l2.5-2.5M3 12l2.5 2.5M21 12l-2.5-2.5M21 12l-2.5 2.5" />
+                  </svg>
+                </button>
+                <div class="arrange-actions" id="arrange-actions" aria-hidden="true">
+                  <button class="arrange-action" id="arrange-undo" type="button" aria-label="Undo arrangement change" data-tooltip="Undo" disabled>
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 7H4v-5M4.5 7.2A8 8 0 1 1 5 17" /></svg>
+                  </button>
+                  <button class="arrange-action" id="arrange-redo" type="button" aria-label="Redo arrangement change" data-tooltip="Redo" disabled>
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15 7h5v-5M19.5 7.2A8 8 0 1 0 19 17" /></svg>
+                  </button>
+                  <button class="arrange-action" id="arrange-snapshot" type="button" aria-label="Preview arrangement snapshot" data-tooltip="Snapshot">
+                    <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h4l1.5-2h5L16 7h4v12H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+                  </button>
+                </div>
+              </section>
+            </div>
+            <button class="icon-control" type="button" id="reset-view" aria-label="Reset view and arrangement" data-tooltip="Reset">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="panel-rule" aria-hidden="true"></div>
+
+          <div class="layer-menu" id="layer-menu">
+            <button class="icon-control layer-menu-toggle" id="layer-menu-toggle" type="button" aria-label="Open layer controls" aria-controls="layer-controls" aria-expanded="false" data-tooltip="Layers">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 2.5 21 7.5 12 12.5 3 7.5 12 2.5z" />
+                <path class="layer-stack-middle" d="M3 12l9 5 9-5" />
+                <path d="M3 16.5l9 5 9-5" />
+              </svg>
+            </button>
+            <div class="control-group layer-controls" id="layer-controls" role="group" aria-labelledby="layer-controls-label">
+              <span class="sr-only" id="layer-controls-label">Layers</span>
+              <label class="icon-control icon-toggle layer-toggle" data-tooltip="Structure">
+              <input type="checkbox" data-layer="architecture" aria-label="Structure" checked />
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-7h6v7" />
+              </svg>
+              </label>
+              <label class="icon-control icon-toggle layer-toggle cutaway-toggle" data-tooltip="Cutaway walls">
+              <input type="checkbox" id="cutaway" aria-label="Cutaway walls" />
+              <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path class="cutaway-hidden-edges" d="M3.5 7.3l3.15 2M8.85 10.7l3.15 2M12 12.7l3.15-2M17.35 9.3l3.15-2M12 12.7v3.59M12 17.91v3.59" />
+                <path d="M12 2.5L3.5 7.3v9.4L12 21.5l8.5-4.8V7.3L12 2.5z" />
+              </svg>
+              </label>
+              <label class="icon-control icon-toggle layer-toggle" data-tooltip="Cabinetry">
+              <input type="checkbox" data-layer="cabinetry" aria-label="Cabinetry" checked />
+              <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <rect x="4" y="3" width="16" height="18" />
+                <path d="M4 12h16M10 9h.01M10 15h.01" />
+              </svg>
+              </label>
+              <label class="icon-control icon-toggle layer-toggle" data-tooltip="Furniture">
+              <input type="checkbox" data-layer="furniture" aria-label="Furniture" checked />
+              <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M5 18V6h4v7h11v5H5zM8 18v3M18 18v3" />
+              </svg>
+              </label>
+              <label class="icon-control icon-toggle layer-toggle" data-tooltip="Lighting">
+              <input type="checkbox" data-layer="lighting" aria-label="Lighting" checked />
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 2v6M8 8h8l3 7H5l3-7zM9 19h6M12 15v4" />
+              </svg>
+              </label>
+              <label class="icon-control icon-toggle layer-toggle" data-tooltip="Trees">
+              <input type="checkbox" data-layer="trees" aria-label="Trees" checked />
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 3L8 9h2l-4 6h5v6M12 3l4 6h-2l4 6h-5v6M8 21h8" />
+              </svg>
+              </label>
+            </div>
+          </div>
+
+          <div class="panel-rule" aria-hidden="true"></div>
+
+          <div class="control-group utility-controls">
+            <button class="icon-control gallery-toggle" id="gallery-toggle" type="button" aria-label="Open photo gallery" aria-expanded="false" data-tooltip="Gallery">
+              <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" />
+                <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
+              </svg>
+            </button>
+            <div class="audio-control" id="audio-control">
+              <section class="audio-player-cell" aria-label="Sound player">
+                <button class="icon-control audio-toggle" id="audio-toggle" type="button" aria-label="Play Sound" aria-controls="audio-player-content" aria-expanded="false" aria-pressed="false" data-tooltip="Sound">
+                  <svg class="audio-waveform-icon" aria-hidden="true" viewBox="0 0 24 24">
+                    <line class="audio-wave-bar" x1="4" y1="8" x2="4" y2="16" />
+                    <line class="audio-wave-bar" x1="8" y1="4" x2="8" y2="20" />
+                    <line class="audio-wave-bar" x1="12" y1="7" x2="12" y2="17" />
+                    <line class="audio-wave-bar" x1="16" y1="3" x2="16" y2="21" />
+                    <line class="audio-wave-bar" x1="20" y1="6" x2="20" y2="18" />
+                  </svg>
+                </button>
+                <div class="audio-player-content" id="audio-player-content" aria-hidden="true">
+                  <div class="audio-track-row" aria-live="polite">
+                    <div class="audio-track-marquee">
+                      <span class="audio-track-label">Spring 1 · Max Richter, Daniel Hope, Konzerthaus Kammerorchester Berlin</span>
+                    </div>
+                  </div>
+                  <div class="audio-playback-controls" role="group" aria-label="Playback controls">
+                    <span class="audio-progress-line" id="audio-progress-line" aria-hidden="true"></span>
+                    <button class="audio-action" id="audio-previous" type="button" aria-label="Previous track">
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M6 5v14M18 6l-9 6 9 6" />
+                      </svg>
+                    </button>
+                    <button class="audio-action audio-play-toggle" id="audio-play-toggle" type="button" aria-label="Play Spring 1" aria-pressed="false">
+                      <svg class="audio-play-icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M8 5l11 7-11 7z" />
+                      </svg>
+                      <svg class="audio-pause-icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M8 5v14M16 5v14" />
+                      </svg>
+                    </button>
+                    <button class="audio-action" id="audio-next" type="button" aria-label="Next track">
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M18 5v14M6 6l9 6-9 6" />
+                      </svg>
+                    </button>
+                    <button class="audio-action audio-repeat-toggle" id="audio-repeat-toggle" type="button" aria-label="Repeat one song" aria-description="Repeating the whole playlist" aria-pressed="false">
+                      <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M4 11V6h15.6" />
+                        <path d="M16.5 3L20 6l-3.5 3" />
+                        <path d="M20 13v5H4.4" />
+                        <path d="M7.5 15L4 18l3.5 3" />
+                        <path class="audio-repeat-one-mark" d="M11.375 11.025l1-1v6" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="description-control" id="description-control">
+              <section class="description-cell" id="description-cell" aria-label="Project description">
+                <div class="description-content" id="description-content" aria-hidden="true">
+                  <div class="description-actions">
+                    <h2>JM+P House</h2>
+                  </div>
+                  <p>I spent a year designing and renovating an old house that is accompanied by Japanese maple and Japanese persimmon trees. Give it a spin to see its design, materials, and furnishing.</p>
+                </div>
+              </section>
+              <button class="icon-control description-toggle" id="description-toggle" type="button" aria-label="Project information" aria-controls="description-content" aria-expanded="false">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" />
+                  <rect x="11.2" y="7" width="1.6" height="1.6" fill="currentColor" stroke="none" />
+                  <rect x="11.2" y="10.5" width="1.6" height="6.5" fill="currentColor" stroke="none" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="arrange-item-controls" id="arrange-item-controls" role="toolbar" aria-label="Selected item controls" hidden>
+          <button class="icon-control" id="arrange-rotate-left" type="button" aria-label="Rotate selected item left 15 degrees" data-tooltip="Rotate left">
+            <svg class="rotate-icon rotate-icon-left" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 16c2.5-.9 4-2.7 4-5 0-3.6-4.5-6.5-10-6.5S2 7.4 2 11s4.5 6.5 10 6.5h2" /><path d="M10.5 14l3.5 3.5-3.5 3.5" /></svg>
+          </button>
+          <button class="icon-control" id="arrange-rotate-right" type="button" aria-label="Rotate selected item right 15 degrees" data-tooltip="Rotate right">
+            <svg class="rotate-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 16c2.5-.9 4-2.7 4-5 0-3.6-4.5-6.5-10-6.5S2 7.4 2 11s4.5 6.5 10 6.5h2" /><path d="M10.5 14l3.5 3.5-3.5 3.5" /></svg>
+          </button>
+          <button class="icon-control" id="arrange-duplicate" type="button" aria-label="Duplicate selected item" data-tooltip="Duplicate">
+            <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" /><path d="M16 8V4H4v12h4" /></svg>
+          </button>
+          <button class="icon-control" id="arrange-delete" type="button" aria-label="Delete selected item" data-tooltip="Delete">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6" /></svg>
+          </button>
+        </div>
+        <div class="arrange-dimensions" id="arrange-dimensions" aria-hidden="true" hidden>
+          <span id="arrange-dimension-width"></span>
+          <span id="arrange-dimension-depth"></span>
+          <span id="arrange-dimension-height"></span>
+        </div>
+
+        <audio class="audio-source" id="audio-element" preload="metadata" src="./assets/audio/Spring 1 - Max Richter, Daniel Hope, Konzerthaus Kammerorchester Berlin.mp3" aria-hidden="true" tabindex="-1"></audio>
+
+        <div class="catalog-backdrop" id="catalog-backdrop" aria-hidden="true"></div>
+        <div class="product-strip catalog-loading" role="region" aria-label="Furniture and lighting products">
+          <div class="catalog-track">
+            <table class="material-table" aria-label="Material library">
+              <tbody><tr id="material-strip-list">
+                <td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td>
+              </tr></tbody>
+            </table>
+            <table class="product-table" aria-label="Product library">
+              <tbody><tr id="product-strip-list">
+                <td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td><td class="catalog-placeholder" aria-hidden="true"></td>
+              </tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <section class="gallery-overlay" id="gallery-overlay" role="dialog" aria-modal="true" aria-label="Photo gallery" aria-hidden="true" tabindex="-1">
+          <button class="gallery-close" id="gallery-close" type="button" aria-label="Close photo gallery">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+          <div class="gallery-stage"><img id="gallery-image" alt="Gallery photo 1" /></div>
+          <div class="gallery-thumbnails" id="gallery-thumbnails" aria-label="Gallery photos"></div>
+        </section>
+
+        <section class="snapshot-dialog" id="snapshot-dialog" role="dialog" aria-modal="true" aria-label="Arrangement snapshot" aria-hidden="true" hidden>
+          <div class="snapshot-card">
+            <img id="snapshot-image" alt="Preview of the current house arrangement" />
+            <div class="snapshot-actions">
+              <button id="snapshot-save" type="button">Save image</button>
+              <button id="snapshot-share" type="button">Share</button>
+            </div>
+          </div>
+          <div class="share-toast" id="share-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+        </section>
+
+      </section>
+    </main>
+
+    <script src="./app.bundle.js?v=sha256-ce637fe79d672e04"></script>
+  </body>
+</html>
