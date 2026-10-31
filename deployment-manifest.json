@@ -1,8 +1,8 @@
 {
   "files": {
     "app.bundle.js": {
-      "bytes": 15867027,
-      "sha256": "ce637fe79d672e0453be63364551134720e6535993b5b2a6658db2da3250ada9"
+      "bytes": 15867024,
+      "sha256": "21b7f81671cb133155d5223cd0d065c0993a0d6412b0123e4a937e806974363a"
     },
     "assets/HOG-2-web.mp4": {
       "bytes": 1927735,
@@ -42,7 +42,7 @@
     },
     "index.html": {
       "bytes": 19002,
-      "sha256": "75022c9376127f3e1ee602c757fd37b9beae2e2238469d0af4b3b498fe4d7a1e"
+      "sha256": "2f4077bfa9ccc280aa5bab4e3613de2dd1ac13d2399b9912a418ca0edc11c4cf"
     },
     "styles.css": {
       "bytes": 57677,

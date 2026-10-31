@@ -234,20 +234,24 @@ GitHub Pages, S3, nginx, …). Two things to know:
    size of every file in the build. If you replace any file, update both —
    or simply replace the whole folder with a newer build as a unit.
 2. **Hard-coded share URL.** The share action shares
-   `https://studiowangfei.com/house` — the portfolio deployment — regardless
-   of where this copy is hosted (including this repo's own Vercel site).
-   That is how the bundle was built; change it in the bundle data if a
-   fork should share a different URL.
+   `https://jmp-house.vercel.app` — this site's own URL — regardless of
+   where a copy is hosted. That is how the bundle is built; change it in
+   the bundle data if a fork should share a different URL. (Builds before
+   the site separation shared `https://studiowangfei.com/house`, the app's
+   former home inside the portfolio site; that URL now redirects here.)
 
 Current build in this repo: files dated **26 October 2026**;
 `app.bundle.js` SHA-256
-`ce637fe79d672e0453be63364551134720e6535993b5b2a6658db2da3250ada9`.
+`21b7f81671cb133155d5223cd0d065c0993a0d6412b0123e4a937e806974363a`
+(the bundle is byte-identical to the 26 October 2026 build except for the
+share URL above).
 
 ### Embedding
 
-The app also runs embedded in an iframe on studiowangfei.com. In that mode
-it talks to its parent page with a small `postMessage` bridge (inlined in
-the bundle):
+The app previously ran embedded in an iframe on studiowangfei.com; since
+the separation it runs standalone and the portfolio site links here
+instead. From its embedded days it retains a small `postMessage` bridge
+(inlined in the bundle) for talking to a parent page:
 
 - `{ type: "jmp-house:child-view", open: boolean }` — reports when a modal
   view (gallery, snapshot) opens or closes, so the host can react
