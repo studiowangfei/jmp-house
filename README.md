@@ -242,9 +242,12 @@ GitHub Pages, S3, nginx, …). Two things to know:
 
 Current build in this repo: files dated **26 October 2026**;
 `app.bundle.js` SHA-256
-`21b7f81671cb133155d5223cd0d065c0993a0d6412b0123e4a937e806974363a`
-(the bundle is byte-identical to the 26 October 2026 build except for the
-share URL above).
+`b9a4871a279d475e109a6fc11f934b6c5003979e31a9f48a9138e1da13d91f2a`
+(the bundle differs from the 26 October 2026 build only in the share URL
+above and the Info cell's behaviour: it expands on click instead of
+hover, with the standard Gallery-style hover state and an "Info" tooltip
+— see styles.css, which drops the description-toggle hover/tooltip
+carve-outs to match).
 
 ### Embedding
 

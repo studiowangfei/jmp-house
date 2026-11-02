@@ -1381,11 +1381,6 @@ button[aria-pressed="true"] {
   transition: background 140ms ease;
 }
 
-.description-toggle::after {
-  display: none;
-  content: none;
-}
-
 .description-control.is-open .description-toggle {
   z-index: 13;
 }
@@ -2234,31 +2229,6 @@ button[aria-pressed="true"] {
     font-size: 12px;
     line-height: 14px;
   }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .view-panel .description-toggle:hover,
-  html.night-view .view-panel .description-control > .description-toggle:hover,
-  html.night-view .view-panel .description-control.description-control > .description-toggle:hover {
-    background: transparent;
-    transform: none;
-  }
-}
-
-.view-panel .description-toggle,
-.view-panel .description-toggle:hover,
-.view-panel .description-toggle:active,
-.view-panel .description-toggle:focus,
-.view-panel .description-toggle:focus-visible,
-.view-panel .description-toggle.touch-tooltip-visible,
-html.night-view .view-panel .description-control.description-control > .description-toggle,
-html.night-view .view-panel .description-control.description-control > .description-toggle:hover,
-html.night-view .view-panel .description-control.description-control > .description-toggle:active,
-html.night-view .view-panel .description-control.description-control > .description-toggle:focus,
-html.night-view .view-panel .description-control.description-control > .description-toggle:focus-visible,
-html.night-view .view-panel .description-control.description-control > .description-toggle.touch-tooltip-visible {
-  background: transparent;
-  transform: none;
 }
 
 @media (max-height: 520px) {
