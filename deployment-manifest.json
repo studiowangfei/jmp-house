@@ -42,11 +42,11 @@
     },
     "index.html": {
       "bytes": 19006,
-      "sha256": "6b2f85bfd3ec605fc18f0dc1871ac52fb1a63d2e0b8342b5ea44d259935730cf"
+      "sha256": "f9ce3fcb44e34c00aa523dfe610b2eff3d8e23fde48e01b5c819d1cd7ff42596"
     },
     "styles.css": {
-      "bytes": 56378,
-      "sha256": "1301438c0f88a98537790b49b4ec89089852c1b4b4224ab3e98cea6d3ff50e0f"
+      "bytes": 56804,
+      "sha256": "68f76f14e0314ab36f869f2200e171ae2d53a301e1a3d132a67e516ecda6a20a"
     }
   },
   "schemaVersion": 1

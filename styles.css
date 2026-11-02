@@ -1385,6 +1385,18 @@ button[aria-pressed="true"] {
   z-index: 13;
 }
 
+.view-panel .description-control.is-open .description-toggle,
+.view-panel .description-control.is-open .description-toggle:hover,
+.view-panel .description-control.is-open .description-toggle:focus,
+.view-panel .description-control.is-open .description-toggle:focus-visible {
+  background: transparent;
+}
+
+.description-control.is-open .description-toggle::after {
+  opacity: 0 !important;
+  transform: translate(4px, -50%);
+}
+
 .description-content {
   position: absolute;
   top: 0;
