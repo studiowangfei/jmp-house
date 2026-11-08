@@ -1,0 +1,39 @@
+Build an interactive house app for my own project using the attached or checked-out House App Starter version 0.1.0.
+
+Read README.md, GUIDE.md, WORKFLOW.md, INPUTS.md, APP_SPEC.md, SCENE_CONTRACT.md and VALIDATION.md. Confirm the package version and inspect the working demo. If the starter files are inaccessible, ask me for the ZIP, checkout or supplied repository link. Use the actual package as your implementation reference.
+
+Preserve the starter's viewer, UI styling, responsive layouts and feature behavior while replacing its fictional house and selections with mine. Follow its scene and product interfaces. Use information and corrections I have already supplied before requesting anything else. I can provide files, screenshots, plain notes and product names; you maintain the technical records and data files.
+
+Work through these six stages:
+
+1. START AND CRITICAL INTAKE
+Inventory my files and identify the latest plan and corrections. Start with only missing critical house information: layout/number of levels, readable plan or usable measured export, units and reliable scale in both plan directions, ceiling heights, floor-level changes and important dimension interpretations. Ask concise grouped questions. A measured model may already establish scale. Explain additional implementation needed for angled walls, stairs or multiple levels; the current starter is a single-level orthogonal cutaway.
+
+Run the starter and capture its desktop/phone UI baseline when browser tools work. The bundled plan and axon are geometry references, not UI screenshots. Record supplied facts, estimates and unresolved questions in project/input.json and project/sources.json. Keep project/decisions.json and project/progress.json current using the provided templates. Those intake records require your transcription into runtime scene/config data; they are not an automatic house generator.
+
+2. MEASURED HOUSE SHELL
+Establish meters, Y up and the X/Z ground plane. Resolve critical scale/height conflicts with me; keep measured wall faces and inferred details explicit. Create the footprint, rooms, partitions, openings, ceiling datum and fixed built-ins from my information. Show a dimensioned Plan and several 3D views with uncertainties labeled. Ask for corrections to specific unclear areas, and apply my latest corrections without undoing earlier confirmed choices.
+
+3. PRODUCT AND MATERIAL RESEARCH + MODELING
+A product name is enough to start. Find manufacturer and reliable retailer pages, identify the exact variant, inspect useful photos/drawings, and retrieve published dimensions, materials and finishes. Ask about genuine variant or finish ambiguities. Record URLs/files, checked date, original units, converted dimensions and the evidence for each fact. Keep image-derived dimensions and appearance estimates distinguishable from published specifications.
+
+Create procedural 3D models from those references, representing the selected product's distinctive shape and construction. User-provided 3D files are optional. Add each product's catalog entry and registered builder; metadata alone does not generate geometry. Preserve fresh owned groups/materials, W/D/H meter envelopes, footprint center X/Z zero, body bottom Y zero, +Z front and separate pendant body/suspension. Show front/side/3D product previews in sensible batches, refine them and regenerate matching thumbnails. Research material swatches, physical repeat/slab sizes, grain direction and surface assignments. If public references are unavailable, request the missing photos/specifications and keep the related facts open.
+
+4. FURNISHED INTEGRATION AND REVIEW
+Place objects at supplied quantities, positions, orientations and heights. When placement is unspecified, propose a labeled arrangement for review. Check clearances and supporting surfaces; mount the TV and other wall objects to actual host walls, and anchor lights to their fixtures. Keep room finishes as the sole interior floor surfaces. Update movement, catalog, focus, lighting and Gallery/media bindings for my data.
+
+Collect project title/description, display units, Gallery photos/captions, optional audio/video/landscape and the intended Share URL at this stage if still missing. Connect features appropriate to actual objects in my house and record any inapplicable feature. Show furnished Plan/3D views, installation heights, clearances and remaining proposals. Recompute camera framing from my model instead of retaining demo coordinates.
+
+5. VERIFICATION AND CORRECTIONS
+Follow VALIDATION.md. Adapt demo-specific expectations to my confirmed input while retaining generic contracts. Run meaningful dimension, geometry, product and mounting checks; rebuild both viewers and verify the deployment. Inspect desktop, phone portrait and phone landscape. Exercise 3D/Plan, layers/cutaway, Night, catalog focus/live previews, Rearrange with rotate/duplicate/delete/undo/redo/reset, snapshot/save/share, Gallery and applicable sound/TV/fireplace/mirror behavior. Capture actual browser evidence and review transitions in normal motion. Fix issues found during my review.
+
+If browser automation is unavailable, continue independent build/geometry work, give me the exact local preview URL and a short manual checklist, and record the unperformed checks. A software geometry render is model evidence. A passing build is not proof of working browser interactions. Record the scope of any manual review accurately.
+
+6. DELIVERY
+Provide runnable source without node_modules, package.json/package-lock.json, a verified dist folder or deployment ZIP, completed input/source/decision/progress records, previews and available UI evidence, a concise verification report, remaining estimates, and exact run/update/rebuild/deploy instructions. Verify a clean extraction. Deliver review evidence separately if the source packager excludes it. If I request publication, use the destination and authorization I have provided; keep the local result usable independently of hosting.
+
+At every checkpoint, show concrete work and ask about unresolved facts or corrections. Continue confirmed and independent work while feedback is pending. Reviews can be batched, and my standing instructions count. Silence does not resolve a critical measurement or choose a variant. Save decisions and next actions so another session can resume from the files.
+
+The baseline materials catalog inspects installed finishes, arrangement edits use session memory, Save image exports a PNG and Share sends the configured project URL. Implement and verify any requested additions before describing them as supported.
+
+After reading the available files, your first response should briefly summarize what you found and ask only for the missing plan, scale, units, height or level information needed for the first measured preview. Research any product names already supplied while independent house questions remain open.
