@@ -7,14 +7,16 @@ furnishing.
 
 **Live:** https://jmp-house.vercel.app
 
-> \*"I spent a year designing and renovating an old house that is accompanied
-> by Japanese maple and Japanese persimmon trees. Give it a spin to see its
-> design, materials, and furnishing."\*
+> \*"This is a 3D visualization of an old house I spent over a year
+> renovating. Give it a spin to see its design, materials, and furnishing.
+> You can download the starter repo and give the prompt to your agent to
+> build with your own house plan and interior design."\*
 > — the in-app project description
 
 > **What this repository contains:** the deployable build only — `index.html`,
 > `styles.css`, and a single pre-bundled `app.bundle.js` (Three.js included),
-> plus the audio/video assets it loads. The original source project that
+> plus the audio/video assets it loads and the `house-app-starter/` pack
+(the build prompt and starter repo the Info panel offers for download). The original source project that
 > produces this bundle is not included, so this repo is for hosting and
 > archiving the finished app, not for rebuilding it from source. See
 > [Editing / rebuilding](#editing--rebuilding) below.
@@ -240,14 +242,16 @@ GitHub Pages, S3, nginx, …). Two things to know:
    the site separation shared `https://studiowangfei.com/house`, the app's
    former home inside the portfolio site; that URL now redirects here.)
 
-Current build in this repo: files dated **26 October 2026**;
+Current build in this repo: the **dist_2 build, 8 November 2026**;
 `app.bundle.js` SHA-256
-`b9a4871a279d475e109a6fc11f934b6c5003979e31a9f48a9138e1da13d91f2a`
-(the bundle differs from the 26 October 2026 build only in the share URL
-above and the Info cell's behaviour: it expands on click instead of
-hover, with the standard Gallery-style hover state and an "Info" tooltip
-— see styles.css, which drops the description-toggle hover/tooltip
-carve-outs to match).
+`940fb17d31dfee1f4de0e178a583c60b023a0981ad58a5b499e79fcf584c6490`.
+It builds in the share URL above and the Info cell's behaviour (expands
+on click instead of hover, Gallery-style hover state and "Info" tooltip,
+hover state suppressed while the panel is open) that the previous build
+carried as patches, and it extends the Info panel: refreshed description
+copy plus three resource actions — **Download starter pack** (the
+`house-app-starter` zip in this repo), **Copy prompt** (the build prompt
+text, with an on-screen fallback), and a **GitHub repo** link.
 
 ### Embedding
 

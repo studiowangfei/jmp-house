@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
     <title>JM+P House</title>
-    <link rel="stylesheet" href="./styles.css?v=sha256-68f76f14e0314ab3" />
+    <link rel="stylesheet" href="./styles.css?v=sha256-e00cd906425c66cd" />
   </head>
   <body>
     <div class="app-loader" id="app-loader" aria-label="Loading interactive house model">
@@ -188,14 +188,6 @@
               </section>
             </div>
             <div class="description-control" id="description-control">
-              <section class="description-cell" id="description-cell" aria-label="Project description">
-                <div class="description-content" id="description-content" aria-hidden="true">
-                  <div class="description-actions">
-                    <h2>JM+P House</h2>
-                  </div>
-                  <p>I spent a year designing and renovating an old house that is accompanied by Japanese maple and Japanese persimmon trees. Give it a spin to see its design, materials, and furnishing.</p>
-                </div>
-              </section>
               <button class="icon-control description-toggle" id="description-toggle" type="button" aria-label="Project information" aria-controls="description-content" aria-expanded="false" data-tooltip="Info">
                 <svg aria-hidden="true" viewBox="0 0 24 24">
                   <rect x="4" y="4" width="16" height="16" />
@@ -203,6 +195,21 @@
                   <rect x="11.2" y="10.5" width="1.6" height="6.5" fill="currentColor" stroke="none" />
                 </svg>
               </button>
+              <section class="description-cell" id="description-cell" aria-label="Project description">
+                <div class="description-content" id="description-content" aria-hidden="true" inert>
+                  <div class="description-actions">
+                    <h2>JM+P House</h2>
+                  </div>
+                  <p>This is a 3D visualization of an old house I spent over a year renovating. Give it a spin to see its design, materials, and furnishing. You can download the starter repo and give the prompt to your agent to build with your own house plan and interior design.</p>
+                  <div class="description-resources" aria-label="Project resources">
+                    <a class="description-resource-button" id="info-download-starter" href="./house-app-starter/artifacts/house-app-starter-0.1.0.zip" download="house-app-starter-0.1.0.zip">Download starter pack</a>
+                    <button class="description-resource-button" id="info-copy-prompt" type="button">Copy prompt</button>
+                    <a class="description-resource-button" id="info-github-repo" href="https://github.com/studiowangfei/jmp-house" target="_blank" rel="noopener noreferrer">GitHub repo</a>
+                  </div>
+                  <p class="description-resource-feedback" id="info-prompt-feedback" role="status" aria-live="polite" hidden></p>
+                  <textarea class="description-prompt-fallback" id="info-prompt-fallback" aria-label="Build prompt to copy" rows="5" readonly hidden></textarea>
+                </div>
+              </section>
             </div>
           </div>
         </aside>
@@ -266,9 +273,10 @@
           <div class="share-toast" id="share-toast" role="status" aria-live="polite" aria-atomic="true"></div>
         </section>
 
+        <div class="share-toast" id="info-prompt-toast" role="status" aria-live="polite" aria-atomic="true"></div>
       </section>
     </main>
 
-    <script src="./app.bundle.js?v=sha256-b9a4871a279d475e"></script>
+    <script src="./app.bundle.js?v=sha256-940fb17d31dfee1f"></script>
   </body>
 </html>

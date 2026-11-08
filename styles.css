@@ -14,7 +14,7 @@
   --control-triple-size: 132px;
   --control-quad-size: 176px;
   --control-layer-stack-size: 264px;
-  --control-info-width: 352px;
+  --control-info-width: 396px;
   --control-icon-size: 22px;
   --hidden-layer-color: #e5e5e5;
   --catalog-cell-size: 56px;
@@ -891,7 +891,8 @@ button[aria-pressed="true"] {
   gap: 6px;
 }
 
-.snapshot-actions button {
+.snapshot-actions button,
+.description-resource-button {
   min-height: 32px;
   padding: 5px 10px;
   border: .5px solid rgba(34, 34, 31, 0.14);
@@ -902,7 +903,8 @@ button[aria-pressed="true"] {
   transition: background 140ms ease;
 }
 
-.snapshot-actions button:hover {
+.snapshot-actions button:hover,
+.description-resource-button:hover {
   border-color: rgba(34, 34, 31, 0.14);
   background: #f2f2f0;
   transform: none;
@@ -1402,10 +1404,13 @@ button[aria-pressed="true"] {
   top: 0;
   right: 0;
   width: var(--description-panel-width, var(--control-info-width));
+  max-height: calc(var(--description-panel-height, 160px) - 2px);
   padding: 16px 44px 16px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   opacity: 0;
   pointer-events: none;
-  transform: scale(var(--description-content-scale-x, .125), var(--description-content-scale-y, .25));
+  transform: scale(var(--description-content-scale-x, .1111111111), var(--description-content-scale-y, .25));
   transform-origin: top right;
   transition: opacity 320ms ease, transform 320ms ease;
   will-change: opacity, transform;
@@ -1437,6 +1442,60 @@ button[aria-pressed="true"] {
   font-size: 16px;
   font-weight: 700;
   line-height: 1.25;
+}
+
+.description-resources {
+  display: flex;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.description-resource-button {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.description-resource-button:focus-visible,
+.description-prompt-fallback:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.description-prompt-fallback {
+  width: 100%;
+  min-height: 96px;
+  margin: 8px 0 0;
+  padding: 8px;
+  border: .5px solid rgba(34, 34, 31, 0.14);
+  border-radius: 0;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.description-content .description-resource-feedback {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.description-prompt-fallback[hidden],
+.description-resource-feedback[hidden] {
+  display: none;
 }
 
 .gallery-overlay {
@@ -2387,6 +2446,8 @@ html.night-view :is(
   .material-item,
   .snapshot-card,
   .snapshot-actions button,
+  .description-resource-button,
+  .description-prompt-fallback,
   .gallery-morph-tuning,
   .gallery-morph-tuning input[type="number"]
 ) {
@@ -2426,7 +2487,9 @@ html.night-view .arrange-action:focus-visible:not(:disabled) {
 
 html.night-view :is(
   .icon-control:focus-visible,
-  .icon-control:has(input:focus-visible)
+  .icon-control:has(input:focus-visible),
+  .description-resource-button:focus-visible,
+  .description-prompt-fallback:focus-visible
 ) {
   outline-color: #efefed;
 }
@@ -2533,12 +2596,18 @@ html.night-view .product-strip::-webkit-scrollbar-thumb {
   background: #686868;
 }
 
-html.night-view .snapshot-actions button {
+html.night-view .snapshot-actions button,
+html.night-view .description-resource-button,
+html.night-view .snapshot-dialog .snapshot-actions button,
+html.night-view .view-panel .description-content .description-resource-button {
   background: #efefed;
   color: #242526;
 }
 
-html.night-view .snapshot-actions button:hover {
+html.night-view .snapshot-actions button:hover,
+html.night-view .description-resource-button:hover,
+html.night-view .snapshot-dialog .snapshot-actions button:hover,
+html.night-view .view-panel .description-content .description-resource-button:hover {
   border-color: rgba(240, 240, 238, .16);
   background: #d8d8d6;
   color: #242526;
@@ -2555,6 +2624,14 @@ html.night-view .description-control::after {
   background: rgba(240, 240, 238, .16);
 }
 
+html.night-view .view-panel .description-control.is-open .description-toggle,
+html.night-view .view-panel .description-control.is-open .description-toggle:hover,
+html.night-view .view-panel .description-control.is-open .description-toggle:focus,
+html.night-view .view-panel .description-control.is-open .description-toggle:focus-visible {
+  background: transparent;
+  color: #efefed;
+}
+
 html.night-view .gallery-morph-tuning {
   box-shadow: 0 8px 28px rgba(0, 0, 0, .34);
 }
@@ -2564,6 +2641,21 @@ html.night-view .gallery-morph-tuning input[type="range"] {
 }
 
 @media (hover: none), (pointer: coarse) {
+  .description-resource-button:hover {
+    border-color: rgba(34, 34, 31, 0.14);
+    background: #ffffff;
+    color: var(--ink);
+    transform: none;
+  }
+
+  html.night-view .description-resource-button:hover,
+  html.night-view .view-panel .description-content .description-resource-button:hover {
+    border-color: rgba(240, 240, 238, .16);
+    background: #efefed;
+    color: #242526;
+    transform: none;
+  }
+
   .audio-action {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
