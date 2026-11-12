@@ -16,10 +16,11 @@ furnishing.
 > **What this repository contains:** the deployable build only — `index.html`,
 > `styles.css`, and a single pre-bundled `app.bundle.js` (Three.js included),
 > plus the audio/video assets it loads and the `house-app-starter/` pack
-(the build prompt and starter repo the Info panel offers for download). The original source project that
-> produces this bundle is not included, so this repo is for hosting and
-> archiving the finished app, not for rebuilding it from source. See
-> [Editing / rebuilding](#editing--rebuilding) below.
+> (the build prompt and starter repo the Info panel offers for download).
+> The original source project that produces this bundle is not included,
+> so this repo is for hosting and archiving the finished app, not for
+> rebuilding it from source. To build your own, use the starter pack
+> below.
 
 ---
 
@@ -167,208 +168,87 @@ the bundle data:
   Louis Poulsen PH Snowball · Verner Panton Flowerpot VP1 (&Tradition) ·
   Santa & Cole TMM Floor Lamp
 - *Objects:* teenage engineering OB-4 Magic Radio — which doubles as the
-  in-scene trigger for the sound player (below), its waveform animating
+  in-scene trigger for the built-in sound player; its waveform animates
   while music plays
 
-### Photo gallery
-
-15 photographs of the real house. Open the gallery from the toolbar, or
-click a framed photo on the wall in the 3D scene — the picture morphs out
-of its frame into the full-screen gallery (with a classic-morph fallback),
-with a thumbnail strip for browsing.
-
-### Sound
-
-A built-in 7-track playlist, in order:
-
-| # | Track | Artist |
-| --- | --- | --- |
-| 1 | Spring 1 | Max Richter, Daniel Hope, Konzerthaus Kammerorchester Berlin |
-| 2 | Just Like Honey | The Jesus and Mary Chain |
-| 3 | Ba Bu Duan | Dou Wei |
-| 4 | Force of Life | Daniel Lopatin |
-| 5 | Alone in Kyoto | Air |
-| 6 | Tian Liang Hao Ge Qiu | Wan Xiaoli |
-| 7 | When The Tigers Broke Free | Pink Floyd |
-
-Play / pause, previous / next, a progress line, a scrolling track label,
-and a repeat toggle (repeat the whole playlist, or repeat one song). An
-animated waveform icon shows playback state.
-
 ---
 
-## Running it locally
+## The starter pack
 
-There is no build step and nothing to install. Serve the folder with any
-static file server — opening `index.html` directly from disk is not the
-supported path:
+This app was built from **House App Starter 0.1.0**, and the starter is
+yours to build with. Download it from the app's Info panel (**Download
+starter pack**), or straight from this repo at
+[`house-app-starter/artifacts/house-app-starter-0.1.0.zip`](house-app-starter/artifacts/house-app-starter-0.1.0.zip);
+the prompt below is also kept at
+[`house-app-starter/BUILD_PROMPT.txt`](house-app-starter/BUILD_PROMPT.txt)
+— the same text the panel's **Copy prompt** button copies. Hand the
+prompt, the starter, and your own house plan to your agent, and it
+rebuilds the app around your house.
 
-```bash
-# from the folder containing index.html
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
+Inside the zip (115 files):
 
-or
+- `BUILD_PROMPT.txt` — the build prompt itself (also in the zip as
+  `docs/BUILD_PROMPT.md`)
+- `README.md`, `AGENTS.md` — the starter's overview and its instructions
+  for agents
+- `docs/` — the working documents the prompt runs on: `GUIDE.md`,
+  `WORKFLOW.md`, `INPUTS.md`, `APP_SPEC.md`, `SCENE_CONTRACT.md`,
+  `VALIDATION.md`, plus third-party notices
+- `src/` — the viewer source (scene, products, interactions, styling)
+  whose behaviour the prompt tells the agent to preserve
+- `runtime/` — the prebuilt viewers (the house viewer and the product
+  library) with their build manifest; preview them by running
+  `python3 scripts/serve.py` from the starter root and opening
+  http://127.0.0.1:4175/
+- `project/` — the intake records the agent maintains while building:
+  input, sources, decisions and progress templates, plus the demo brief
+- `references/` — the demo house's plan (SVG) and axonometric (PNG)
+  geometry references, with render evidence
+- `assets/` — the demo house's media: gallery photos, material
+  swatches, product thumbnails, ambient audio and day/night video
+- `scripts/`, `tests/` — build, packaging, serving and verification
+  scripts, and the test suite
 
-```bash
-npx serve .
-```
-
-Requirements: a modern browser with WebGL. The first load is heavy —
-`app.bundle.js` is \~15.9 MB because the Three.js engine, the procedural
-textures, the product thumbnails, and all 15 gallery photographs (full-size
-and thumbnail) are inlined into it as data URIs.
-
-Troubleshooting: appending `?performance=legacy` to the URL disables the
-performance-optimised rendering path (on-demand shadow updates,
-visibility/idle-driven rendering) and falls back to a continuous render
-loop — useful for diagnosing rendering issues on unusual hardware.
-
-## Deploying
-
-Copy the folder contents, unchanged, to any static host (Vercel, Netlify,
-GitHub Pages, S3, nginx, …). Two things to know:
-
-1. **Integrity / cache-busting.** `index.html` loads its CSS and JS with a
-   content-hash query (`styles.css?v=sha256-…`, `app.bundle.js?v=sha256-…`),
-   and `deployment-manifest.json` (schema v1) lists the SHA-256 and byte
-   size of every file in the build. If you replace any file, update both —
-   or simply replace the whole folder with a newer build as a unit.
-2. **Hard-coded share URL.** The share action shares
-   `https://jmp-house.vercel.app` — this site's own URL — regardless of
-   where a copy is hosted. That is how the bundle is built; change it in
-   the bundle data if a fork should share a different URL. (Builds before
-   the site separation shared `https://studiowangfei.com/house`, the app's
-   former home inside the portfolio site; that URL now redirects here.)
-
-Current build in this repo: the **dist_4 build, 11 November 2026**;
-`app.bundle.js` SHA-256
-`fb3537b65a2dd659401b02f7837eef4936df4314baf64c2c31c6bbb8625c5561`.
-Relative to the dist_2 build it replaces, the only change is the build
-prompt text: the starter's guides now live under `docs/` and the prompt
-gains preview instructions (`python3 scripts/serve.py`, port 4175). The
-updated text appears in the bundle's embedded prompt (what **Copy
-prompt** copies), in `house-app-starter/BUILD_PROMPT.txt`, and in the
-regenerated starter zip. Everything else — app behaviour, styles, media
-— is unchanged. The dist_2 build (8 November 2026) built in the share
-URL above and the Info cell's behaviour (expands on click instead of
-hover, Gallery-style hover state and "Info" tooltip, hover state
-suppressed while the panel is open) that the original build carried as
-patches, and extended the Info panel with refreshed description copy
-plus three resource actions — **Download starter pack**, **Copy
-prompt**, and a **GitHub repo** link.
-
-### Embedding
-
-The app previously ran embedded in an iframe on studiowangfei.com; since
-the separation it runs standalone and the portfolio site links here
-instead. From its embedded days it retains a small `postMessage` bridge
-(inlined in the bundle) for talking to a parent page:
-
-- `{ type: "jmp-house:child-view", open: boolean }` — reports when a modal
-  view (gallery, snapshot) opens or closes, so the host can react
-- `"jmp-house:close"` — asks the host to close the viewer
-
-Standalone, with no parent frame, the bridge simply does nothing.
-
-## File structure
+### The build prompt
 
 ```text
-.
-├── index.html                 # App shell: loader, toolbar, layer / audio /
-│                              #   gallery / snapshot UI (274 lines)
-├── styles.css                 # All UI styling, incl. the additive Night
-│                              #   theme layer (2,629 lines)
-├── app.bundle.js              # Everything else: Three.js r185 + the whole
-│                              #   house scene, in one minified IIFE
-│                              #   (~15.9 MB, no sourcemap)
-├── deployment-manifest.json   # SHA-256 + size for every file (schema v1)
-└── assets/
-    ├── HOG-2-web.mp4          # Media-display video, day mode (480×200, ~22 s, looped, muted)
-    ├── LIT-web.mp4            # Media-display video, night mode (480×256, ~23 s, looped, muted)
-    └── audio/                 # The 7 playlist tracks, as MP3
-        ├── Spring 1 - Max Richter, Daniel Hope, Konzerthaus Kammerorchester Berlin.mp3
-        ├── Just Like Honey - The Jesus and Mary Chain.mp3
-        ├── Ba Bu Duan - Dou Wei.mp3
-        ├── Daniel Lopatin - Force of Life.mp3
-        ├── Alone in Kyoto - Air.mp3
-        ├── Tian Liang Hao Ge Qiu - Wan Xiaoli.mp3
-        └── When The Tigers Broke Free - Pink Floyd.mp3
+Build an interactive house app for my own project using the attached or checked-out House App Starter version 0.1.0.
+
+Read README.md, docs/GUIDE.md, docs/WORKFLOW.md, docs/INPUTS.md, docs/APP_SPEC.md, docs/SCENE_CONTRACT.md and docs/VALIDATION.md. Confirm the package version and inspect the working demo. If the starter files are inaccessible, ask me for the ZIP, checkout or supplied repository link. Use the actual package as your implementation reference. Preview the shipped prebuilt viewers by running python3 scripts/serve.py from the starter root, then open http://127.0.0.1:4175/ and http://127.0.0.1:4175/runtime/products.html. Source files live under src/, project records under project/, guides under docs/, and generated browser outputs plus their build manifest under runtime/. Use Node/npm for source changes and automated checks.
+
+Preserve the starter's viewer, UI styling, responsive layouts and feature behavior while replacing its fictional house and selections with mine. Follow its scene and product interfaces. Use information and corrections I have already supplied before requesting anything else. I can provide files, screenshots, plain notes and product names; you maintain the technical records and data files.
+
+Work through these six stages:
+
+1. START AND CRITICAL INTAKE
+Inventory my files and identify the latest plan and corrections. Start with only missing critical house information: layout/number of levels, readable plan or usable measured export, units and reliable scale in both plan directions, ceiling heights, floor-level changes and important dimension interpretations. Ask concise grouped questions. A measured model may already establish scale. Explain additional implementation needed for angled walls, stairs or multiple levels; the current starter is a single-level orthogonal cutaway.
+
+Run the starter and capture its desktop/phone UI baseline when browser tools work. The bundled plan and axon are geometry references, not UI screenshots. Record supplied facts, estimates and unresolved questions in project/input.json and project/sources.json. Keep project/decisions.json and project/progress.json current using the provided templates. Those intake records require your transcription into runtime scene/config data; they are not an automatic house generator.
+
+2. MEASURED HOUSE SHELL
+Establish meters, Y up and the X/Z ground plane. Resolve critical scale/height conflicts with me; keep measured wall faces and inferred details explicit. Create the footprint, rooms, partitions, openings, ceiling datum and fixed built-ins from my information. Show a dimensioned Plan and several 3D views with uncertainties labeled. Ask for corrections to specific unclear areas, and apply my latest corrections without undoing earlier confirmed choices.
+
+3. PRODUCT AND MATERIAL RESEARCH + MODELING
+A product name is enough to start. Find manufacturer and reliable retailer pages, identify the exact variant, inspect useful photos/drawings, and retrieve published dimensions, materials and finishes. Ask about genuine variant or finish ambiguities. Record URLs/files, checked date, original units, converted dimensions and the evidence for each fact. Keep image-derived dimensions and appearance estimates distinguishable from published specifications.
+
+Create procedural 3D models from those references, representing the selected product's distinctive shape and construction. User-provided 3D files are optional. Add each product's catalog entry and registered builder; metadata alone does not generate geometry. Preserve fresh owned groups/materials, W/D/H meter envelopes, footprint center X/Z zero, body bottom Y zero, +Z front and separate pendant body/suspension. Show front/side/3D product previews in sensible batches, refine them and regenerate matching thumbnails. Research material swatches, physical repeat/slab sizes, grain direction and surface assignments. If public references are unavailable, request the missing photos/specifications and keep the related facts open.
+
+4. FURNISHED INTEGRATION AND REVIEW
+Place objects at supplied quantities, positions, orientations and heights. When placement is unspecified, propose a labeled arrangement for review. Check clearances and supporting surfaces; mount the TV and other wall objects to actual host walls, and anchor lights to their fixtures. Keep room finishes as the sole interior floor surfaces. Update movement, catalog, focus, lighting and Gallery/media bindings for my data.
+
+Collect project title/description, display units, Gallery photos/captions, optional audio/video/landscape and the intended Share URL at this stage if still missing. Connect features appropriate to actual objects in my house and record any inapplicable feature. Show furnished Plan/3D views, installation heights, clearances and remaining proposals. Recompute camera framing from my model instead of retaining demo coordinates.
+
+5. VERIFICATION AND CORRECTIONS
+Follow docs/VALIDATION.md. Adapt demo-specific expectations to my confirmed input while retaining generic contracts. Run meaningful dimension, geometry, product and mounting checks; rebuild both viewers and verify the deployment. Inspect desktop, phone portrait and phone landscape. Exercise 3D/Plan, layers/cutaway, Night, catalog focus/live previews, Rearrange with rotate/duplicate/delete/undo/redo/reset, snapshot/save/share, Gallery and applicable sound/TV/fireplace/mirror behavior. Capture actual browser evidence and review transitions in normal motion. Fix issues found during my review.
+
+If browser automation is unavailable, continue independent build/geometry work, give me the exact local preview URL and a short manual checklist, and record the unperformed checks. A software geometry render is model evidence. A passing build is not proof of working browser interactions. Record the scope of any manual review accurately.
+
+6. DELIVERY
+Provide runnable source without node_modules, package.json/package-lock.json, a verified dist folder or deployment ZIP, completed input/source/decision/progress records, previews and available UI evidence, a concise verification report, remaining estimates, and exact run/update/rebuild/deploy instructions. Verify a clean extraction. Deliver review evidence separately if the source packager excludes it. If I request publication, use the destination and authorization I have provided; keep the local result usable independently of hosting.
+
+At every checkpoint, show concrete work and ask about unresolved facts or corrections. Continue confirmed and independent work while feedback is pending. Reviews can be batched, and my standing instructions count. Silence does not resolve a critical measurement or choose a variant. Save decisions and next actions so another session can resume from the files.
+
+The baseline materials catalog inspects installed finishes, arrangement edits use session memory, Save image exports a PNG and Share sends the configured project URL. Implement and verify any requested additions before describing them as supported.
+
+After reading the available files, your first response should briefly summarize what you found and ask only for the missing plan, scale, units, height or level information needed for the first measured preview. Research any product names already supplied while independent house questions remain open.
 ```
-
-Everything else — geometry, materials, textures (wood grain is largely
-procedural; stone/ tile textures are inlined WebPs), gallery photos,
-product thumbnails, and the fireplace flame — lives inside
-`app.bundle.js`.
-
-## How it is built (from the bundle)
-
-Since only the bundle ships, this is read from the bundle itself:
-
-- **Engine:** Three.js **r185**, bundled inline (`WebGLRenderer`,
-  `MeshStandardMaterial`, PCF shadows). Perspective camera for the 3D
-  view; orthographic camera for Plan view and snapshots. Custom
-  orbit-style controls (no stock `OrbitControls`), raycaster picking
-  throughout — for products, gallery frames, and rearrange selection.
-- **Performance path (default):** rendering is demand-driven — shadow maps
-  update on change rather than every frame, animation runs at capped
-  rates (15 fps for the fireplace flame and the OB-4 waveform), video
-  texture frames are followed with `requestVideoFrameCallback` (with a
-  \~66 ms timer fallback), and rendering pauses when the viewer is
-  off-screen (`IntersectionObserver`), the tab is hidden
-  (`visibilitychange`), or the app signals idle. WebGL context loss /
-  restore is handled. `?performance=legacy` turns all of this off.
-- **UI:** vanilla HTML/CSS/JS in `index.html` + `styles.css` — Libre
-  Baskerville / Georgia serif, a strict 44 px control-cell grid, hard-
-  cornered square-cap icons, full ARIA labelling, `prefers-reduced-motion`
-  support, and dedicated touch / coarse-pointer layouts (breakpoints at
-  900 px / 720 px, and short-height screens).
-- **Night mode** is deliberately an additive CSS theme layer plus a
-  lighting state in the scene — remove that CSS block and the controller
-  hook and the original day presentation is restored unchanged.
-
-## Editing / rebuilding
-
-You can't, from this repo alone — and that's by design. The workflow is:
-
-1. Make changes in the original source project (not included here).
-2. Export a new build (new `app.bundle.js`, `index.html`, `styles.css`,
-   assets, and a regenerated `deployment-manifest.json`).
-3. Replace the files in this repo / on the host with the new build as a
-   complete unit, and verify the manifest hashes match the files on disk.
-
-Small, safe edits that *are* possible here: none are recommended in
-`app.bundle.js` (minified, 4,353 very long lines), but `index.html` copy
-(e.g. the project description) and `styles.css` values are readable and
-editable — just remember to refresh the `?v=sha256-…` query strings and
-the manifest afterwards, or browsers may keep serving the cached copy.
-
-## Notes and caveats
-
-- **Music copyright.** The seven MP3s in `assets/audio/` are commercial
-  recordings included for the author's own presentation of the project.
-  Keep this repository **private**, or remove / replace the audio files
-  (and expect the player to have nothing to play) before making it public.
-  The same caution applies, to a lesser degree, to the gallery photographs.
-- **No licence is specified yet.** Until a `LICENSE` file is added, treat
-  the code and assets as all rights reserved. <!-- TODO: choose a licence -->
-- The macOS housekeeping files in the original zip archive (`.DS_Store`,
-  `__MACOSX/`) are not part of the app and should not be committed.
-- The folder name in the original archive, `JM+P House`, contains a space
-  and a `+`; for hosting, the *contents* of that folder are the site root —
-  the folder name itself doesn't matter.
-
-## Acknowledgements
-
-Product models reference their makers' published pages (linked in the
-bundle data for each product); the Japanese maple tree imagery references
-a Sketchfab model (linked in the bundle); the persimmon tree imagery was
-user-supplied. Furniture, finishes, and dimensions are reconstructions for
-study purposes — where a finish or dimension was estimated rather than
-published, the bundle's product notes say so.
-
----
-
-\*Draft README — prepared from the 26 October 2026 build. Sections marked
-TODO (licence) need the author's decision before this repo is published.\*
