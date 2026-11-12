@@ -1,8 +1,8 @@
 {
   "files": {
     "app.bundle.js": {
-      "bytes": 15733853,
-      "sha256": "940fb17d31dfee1f4de0e178a583c60b023a0981ad58a5b499e79fcf584c6490"
+      "bytes": 15734274,
+      "sha256": "fb3537b65a2dd659401b02f7837eef4936df4314baf64c2c31c6bbb8625c5561"
     },
     "assets/HOG-2-web.mp4": {
       "bytes": 1927735,
@@ -41,16 +41,16 @@
       "sha256": "9f3c8a0b81bfdc6bdb2514be384b1cbce2cc5c3783bc93fbb4df8f98518b25eb"
     },
     "house-app-starter/BUILD_PROMPT.txt": {
-      "bytes": 6926,
-      "sha256": "7e30a5bac2ef73763036dbc11ac4afbc26fce04d351d47455a0414b9852bd814"
+      "bytes": 7347,
+      "sha256": "9e5b5f430180b6a83db74471ada8203d2a13dcbdbeb9f3babab1b565931dbe9f"
     },
     "house-app-starter/artifacts/house-app-starter-0.1.0.zip": {
-      "bytes": 1757213,
-      "sha256": "61018148e0b61ecdd21ab6b6163abc25d056ac2899ab0addd8f7cc38b6000dee"
+      "bytes": 1779738,
+      "sha256": "dbab45bd8d25a483f6919eb651166940958252d7c92607f58d0343c3053f3a7b"
     },
     "index.html": {
       "bytes": 20131,
-      "sha256": "3bc7a791955812d50bd434878029ef490a8f66b9f671430573ef12e31dca3884"
+      "sha256": "352fde2462e2e12a4e9b021ee6df8cc4d64d0a8a331f8e806ddf3fb404508588"
     },
     "styles.css": {
       "bytes": 59422,

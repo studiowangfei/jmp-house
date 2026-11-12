@@ -242,16 +242,22 @@ GitHub Pages, S3, nginx, …). Two things to know:
    the site separation shared `https://studiowangfei.com/house`, the app's
    former home inside the portfolio site; that URL now redirects here.)
 
-Current build in this repo: the **dist_2 build, 8 November 2026**;
+Current build in this repo: the **dist_4 build, 11 November 2026**;
 `app.bundle.js` SHA-256
-`940fb17d31dfee1f4de0e178a583c60b023a0981ad58a5b499e79fcf584c6490`.
-It builds in the share URL above and the Info cell's behaviour (expands
-on click instead of hover, Gallery-style hover state and "Info" tooltip,
-hover state suppressed while the panel is open) that the previous build
-carried as patches, and it extends the Info panel: refreshed description
-copy plus three resource actions — **Download starter pack** (the
-`house-app-starter` zip in this repo), **Copy prompt** (the build prompt
-text, with an on-screen fallback), and a **GitHub repo** link.
+`fb3537b65a2dd659401b02f7837eef4936df4314baf64c2c31c6bbb8625c5561`.
+Relative to the dist_2 build it replaces, the only change is the build
+prompt text: the starter's guides now live under `docs/` and the prompt
+gains preview instructions (`python3 scripts/serve.py`, port 4175). The
+updated text appears in the bundle's embedded prompt (what **Copy
+prompt** copies), in `house-app-starter/BUILD_PROMPT.txt`, and in the
+regenerated starter zip. Everything else — app behaviour, styles, media
+— is unchanged. The dist_2 build (8 November 2026) built in the share
+URL above and the Info cell's behaviour (expands on click instead of
+hover, Gallery-style hover state and "Info" tooltip, hover state
+suppressed while the panel is open) that the original build carried as
+patches, and extended the Info panel with refreshed description copy
+plus three resource actions — **Download starter pack**, **Copy
+prompt**, and a **GitHub repo** link.
 
 ### Embedding
 
