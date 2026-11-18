@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
-    <title>JM+P House</title>
-    <link rel="stylesheet" href="./styles.css?v=sha256-e00cd906425c66cd" />
+    <title>JM+P HOUSE</title>
+    <link rel="icon" href="./favicon.ico?v=sha256-0ca8c26fdbb8f864" type="image/x-icon" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="./favicon.svg?v=sha256-97a7cc83f274562d" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png?v=sha256-772d7057c9734559" sizes="180x180" />
+    <script src="./typography.js?v=sha256-59cf2f3cbdf13bc2"></script>
+    <link rel="stylesheet" href="./assets/fonts/table-mono/table-mono.css?v=sha256-856ff9c7fedb3258" />
+    <link rel="stylesheet" href="./typography.css?v=sha256-5c06a835a77d83c1" />
+    <link rel="stylesheet" href="./styles.css?v=sha256-6526e551b5ac813d" />
   </head>
   <body>
     <div class="app-loader" id="app-loader" aria-label="Loading interactive house model">
@@ -93,8 +99,8 @@
                 <path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-7h6v7" />
               </svg>
               </label>
-              <label class="icon-control icon-toggle layer-toggle cutaway-toggle" data-tooltip="Cutaway walls">
-              <input type="checkbox" id="cutaway" aria-label="Cutaway walls" />
+              <label class="icon-control icon-toggle layer-toggle cutaway-toggle" data-tooltip="Exposure walls">
+              <input type="checkbox" id="cutaway" aria-label="Exposure walls" />
               <svg class="hard-corner-icon" aria-hidden="true" viewBox="0 0 24 24">
                 <path class="cutaway-hidden-edges" d="M3.5 7.3l3.15 2M8.85 10.7l3.15 2M12 12.7l3.15-2M17.35 9.3l3.15-2M12 12.7v3.59M12 17.91v3.59" />
                 <path d="M12 2.5L3.5 7.3v9.4L12 21.5l8.5-4.8V7.3L12 2.5z" />
@@ -200,7 +206,7 @@
                   <div class="description-actions">
                     <h2>JM+P House</h2>
                   </div>
-                  <p>This is a 3D visualization of an old house I spent over a year renovating. Give it a spin to see its design, materials, and furnishing. You can download the starter repo and give the prompt to your agent to build with your own house plan and interior design.</p>
+                  <p class="description-paragraph">This is a 3D visualization of an old house I spent over a year renovating. Give it a spin to see its design, materials, and furnishing. You can download the starter pack and give the prompt to your agent to build with your own house plans and interior design.</p>
                   <div class="description-resources" aria-label="Project resources">
                     <a class="description-resource-button" id="info-download-starter" href="./house-app-starter/artifacts/house-app-starter-0.1.0.zip" download="house-app-starter-0.1.0.zip">Download starter pack</a>
                     <button class="description-resource-button" id="info-copy-prompt" type="button">Copy prompt</button>
@@ -277,6 +283,6 @@
       </section>
     </main>
 
-    <script src="./app.bundle.js?v=sha256-fb3537b65a2dd659"></script>
+    <script src="./app.bundle.js?v=sha256-9d3d8faffd99366d"></script>
   </body>
 </html>

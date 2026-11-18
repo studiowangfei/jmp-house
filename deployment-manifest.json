@@ -1,8 +1,12 @@
 {
   "files": {
     "app.bundle.js": {
-      "bytes": 15734274,
-      "sha256": "fb3537b65a2dd659401b02f7837eef4936df4314baf64c2c31c6bbb8625c5561"
+      "bytes": 15734505,
+      "sha256": "9d3d8faffd99366d6ed2595ce9769338c73e9d2371952277a9423bdc1635a044"
+    },
+    "apple-touch-icon.png": {
+      "bytes": 5250,
+      "sha256": "772d7057c9734559097994c49b010673a1523d4685f60f01c5ed2a8712fe3601"
     },
     "assets/HOG-2-web.mp4": {
       "bytes": 1927735,
@@ -40,6 +44,26 @@
       "bytes": 1463086,
       "sha256": "9f3c8a0b81bfdc6bdb2514be384b1cbce2cc5c3783bc93fbb4df8f98518b25eb"
     },
+    "assets/fonts/table-mono/OFL.txt": {
+      "bytes": 4427,
+      "sha256": "f65a3e2e0b836e700e696cdc7f4b4cd1b0bba597391d189e75a28db414efbdbb"
+    },
+    "assets/fonts/table-mono/TableMono-Variable.woff2": {
+      "bytes": 132796,
+      "sha256": "7e07527365251c5216702b5225f392dd713fa643acf7db93341445f4f53056f7"
+    },
+    "assets/fonts/table-mono/table-mono.css": {
+      "bytes": 707,
+      "sha256": "856ff9c7fedb3258347eb62f2056063c0d74ce4789ef937aad9bb773e493fb1a"
+    },
+    "favicon.ico": {
+      "bytes": 3397,
+      "sha256": "0ca8c26fdbb8f8640ae639c8a3e28fc6e51f325a712a5ea713c290034e110903"
+    },
+    "favicon.svg": {
+      "bytes": 1916,
+      "sha256": "97a7cc83f274562df56523f875aa00cde3d9b67385e7771132fe030dca854ea3"
+    },
     "house-app-starter/BUILD_PROMPT.txt": {
       "bytes": 7347,
       "sha256": "9e5b5f430180b6a83db74471ada8203d2a13dcbdbeb9f3babab1b565931dbe9f"
@@ -49,12 +73,20 @@
       "sha256": "dbab45bd8d25a483f6919eb651166940958252d7c92607f58d0343c3053f3a7b"
     },
     "index.html": {
-      "bytes": 20131,
-      "sha256": "352fde2462e2e12a4e9b021ee6df8cc4d64d0a8a331f8e806ddf3fb404508588"
+      "bytes": 20747,
+      "sha256": "2e99b808ffc6cc5e9243ded59c4c724cbd6be1e2a437903c778a12ff34543b17"
     },
     "styles.css": {
-      "bytes": 59422,
-      "sha256": "e00cd906425c66cd0607ebd62040440f34349342a820562075ae5bd50c5cf5b4"
+      "bytes": 60522,
+      "sha256": "6526e551b5ac813d894dc3bb01970d0a951dfb407041ec1f44ffdb7dcc56ad3a"
+    },
+    "typography.css": {
+      "bytes": 1060,
+      "sha256": "5c06a835a77d83c1eed2e545a3ed822175dcaa45078b83d54d345b65551465df"
+    },
+    "typography.js": {
+      "bytes": 983,
+      "sha256": "59cf2f3cbdf13bc25f951c3ed6230284c9b816ae93f7158706d7a8bead759b27"
     }
   },
   "schemaVersion": 1
