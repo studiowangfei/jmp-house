@@ -1,0 +1,31 @@
+/* Table Mono v0.400. SIL Open Font License 1.1; Geist upstream credit retained. */
+@font-face {
+  font-family: "Table Mono";
+  src: url("./TableMono-Variable.woff2?v=0.400") format("woff2");
+  font-style: normal;
+  font-weight: 350 700;
+  font-display: swap;
+}
+
+.table-mono {
+  font-family: "Table Mono", ui-monospace, monospace;
+  font-kerning: none;
+  font-variant-ligatures: none;
+}
+
+/* The default zero is dotted (ss01). Optional alternates: */
+.table-mono--slashed-zero {
+  font-feature-settings: "ss02" 1;
+}
+
+.table-mono--cut-zero {
+  font-feature-settings: "ss03" 1;
+}
+
+.table-mono--plain-zero {
+  font-feature-settings: "ss04" 1;
+}
+
+.table-mono--barred-seven {
+  font-feature-settings: "ss06" 1;
+}
