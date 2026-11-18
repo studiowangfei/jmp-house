@@ -1,0 +1,28 @@
+/* Reversible typeface experiment. ?font=original restores previous font settings. */
+:root {
+  --app-font-family: "Table Mono", ui-monospace, monospace;
+  --app-readout-font-family: var(--app-font-family);
+  --table-mono-tracking: 0em;
+  --app-text-transform: uppercase;
+}
+
+:where(html, html *) {
+  text-transform: var(--app-text-transform);
+}
+
+:root[data-font="original"] {
+  --app-font-family: "Libre Baskerville", Georgia, serif;
+  --app-readout-font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Keep this low specificity so existing component tracking remains intact.
+   Each element resolves em against its own font size; original mode is exempt. */
+:where(html:not([data-font="original"]), html:not([data-font="original"]) *) {
+  letter-spacing: var(--table-mono-tracking);
+}
+
+/* Change only the family in this rule, preserving native control sizes and
+   weights. The shared tracking rule above applies separately. */
+:root:not([data-font="original"]) :where(button, input, select, textarea, option, optgroup) {
+  font-family: var(--app-font-family);
+}
