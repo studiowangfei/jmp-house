@@ -49,12 +49,12 @@
       "sha256": "f65a3e2e0b836e700e696cdc7f4b4cd1b0bba597391d189e75a28db414efbdbb"
     },
     "assets/fonts/table-mono/TableMono-Variable.woff2": {
-      "bytes": 132796,
-      "sha256": "7e07527365251c5216702b5225f392dd713fa643acf7db93341445f4f53056f7"
+      "bytes": 132948,
+      "sha256": "f388a14ed56ba49d38ac26b24b01cc5b1b7bfbae42d64ae4a1e1c769650054a0"
     },
     "assets/fonts/table-mono/table-mono.css": {
       "bytes": 707,
-      "sha256": "856ff9c7fedb3258347eb62f2056063c0d74ce4789ef937aad9bb773e493fb1a"
+      "sha256": "70c423d8d30d4290021e71f5150fe489cf33511ccfe0e31b11ad7d3f2b668cfc"
     },
     "favicon.ico": {
       "bytes": 3397,
@@ -62,7 +62,7 @@
     },
     "favicon.svg": {
       "bytes": 1916,
-      "sha256": "97a7cc83f274562df56523f875aa00cde3d9b67385e7771132fe030dca854ea3"
+      "sha256": "ac9faae61f560bf340527d1894d8d2ed7b77371396c75b3c7f100a1d926fd4b6"
     },
     "house-app-starter/BUILD_PROMPT.txt": {
       "bytes": 7347,
@@ -74,7 +74,7 @@
     },
     "index.html": {
       "bytes": 20747,
-      "sha256": "2e99b808ffc6cc5e9243ded59c4c724cbd6be1e2a437903c778a12ff34543b17"
+      "sha256": "d3c3f8da47f862fe3cc229e9283c1334720b34a79fa7958c625cfbf2da19ce3f"
     },
     "styles.css": {
       "bytes": 60522,
