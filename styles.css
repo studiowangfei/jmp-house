@@ -1433,7 +1433,7 @@ button[aria-pressed="true"] {
 }
 
 .description-paragraph {
-  padding-block: 4px;
+  padding-block: 8px;
 }
 
 .description-paragraph,

@@ -74,11 +74,11 @@
     },
     "index.html": {
       "bytes": 20747,
-      "sha256": "d3c3f8da47f862fe3cc229e9283c1334720b34a79fa7958c625cfbf2da19ce3f"
+      "sha256": "5dc3b53bc048405e73b9122ef47447ae794b8d358b31f3ba6f9fef1209c8a35a"
     },
     "styles.css": {
       "bytes": 60522,
-      "sha256": "6526e551b5ac813d894dc3bb01970d0a951dfb407041ec1f44ffdb7dcc56ad3a"
+      "sha256": "e92c7910bc6f7273a68ec8404191fb68d1875c547d8d58c127db4237964d7221"
     },
     "typography.css": {
       "bytes": 1060,
